@@ -20,6 +20,10 @@ build/
 # Testing
 coverage/
 .nyc_output/
+tests/.test-data/
+
+# Data storage
+data/
 
 # Environment variables
 .env

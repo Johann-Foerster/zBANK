@@ -5,21 +5,11 @@
  * This file demonstrates the test structure that will be used.
  */
 
-// Future tests will use:
-// import { render } from 'ink-testing-library';
-// import { describe, it, expect } from '@jest/globals';
-// import React from 'react';
-// import App from '../src/components/App';
+import { describe, it, expect } from '@jest/globals';
 
-/**
- * Example test structure (to be implemented):
- * 
- * describe('zBANK CLI', () => {
- *   it('should render welcome message', () => {
- *     const { lastFrame } = render(<App />);
- *     expect(lastFrame()).toContain('Welcome to zBANK');
- *   });
- * });
- */
+describe('zBANK CLI', () => {
+  it('should be testable', () => {
+    expect(true).toBe(true);
+  });
+});
 
-export {};
