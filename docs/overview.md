@@ -35,7 +35,7 @@ The application simulates a simple banking system where users can:
 ┌─────────────────────────────────────────────────────────────┐
 │                    CICS Transaction: ZBNK                    │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │          BMS Maps (ZBNKSET Mapset)                   │   │
+│  │          BMS Maps (ZBANKSET Mapset)                  │   │
 │  │  • ZLOGIN  (Login Screen)                            │   │
 │  │  • ZHOME   (Home/Transaction Screen)                 │   │
 │  │  • ZRGSTR  (Registration Screen)                     │   │
