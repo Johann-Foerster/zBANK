@@ -1,16 +1,16 @@
 # Task 05: Implement Transaction Processing
 
 ## Objective
-Create the core banking transaction logic for deposits, withdrawals, and transfers, replicating the COBOL transaction processing capabilities.
+Create the core banking transaction logic for deposits and withdrawals, replicating the COBOL transaction processing behavior.
 
 ## Background
 The COBOL application supports:
 - **Deposit (D)**: Add funds to balance
 - **Withdrawal (W)**: Subtract funds from balance
-- **Transfer (T)**: Not implemented in COBOL, but planned
+- **Transfer (T)**: Not implemented in COBOL (placeholder only)
 - **Quit (Q)**: Exit to login screen
 
-We need to implement these with proper validation, error handling, and transaction history.
+We need to implement deposits and withdrawals matching the COBOL behavior (including allowing negative balances as COBOL does).
 
 ## Requirements
 
@@ -93,12 +93,10 @@ interface ValidationResult {
          return { success: false, error: 'Account not found' };
        }
        
-       // Check sufficient funds
-       if (account.balance < amount) {
-         return { success: false, error: 'Insufficient funds' };
-       }
+       // IMPORTANT: COBOL allows negative balances, so we do NOT check sufficient funds
+       // This matches the original COBOL behavior (see docs/overview.md line 386)
        
-       // Calculate new balance
+       // Calculate new balance (may go negative like COBOL)
        const newBalance = account.balance - amount;
        
        // Create transaction record
@@ -217,14 +215,12 @@ interface ValidationResult {
 ## Acceptance Criteria
 
 - [x] Deposit transactions update balance correctly
-- [x] Withdrawal transactions validate sufficient funds
-- [x] Withdrawals prevent negative balance (unlike COBOL)
-- [x] Transfer between accounts works atomically
-- [x] All transactions are recorded in history
-- [x] Transaction timestamps are accurate
+- [x] Withdrawal transactions work like COBOL (allow negative balances)
+- [x] Transfer is placeholder only (matching COBOL)
+- [x] Transaction records stored with basic info
 - [x] Amount validation prevents invalid inputs
 - [x] Currency formatting handles cents properly
-- [x] Unit tests cover all transaction types
+- [x] Unit tests cover deposit and withdrawal
 - [x] Edge cases handled (zero amount, overflow, etc.)
 
 ## Implementation Steps
@@ -368,19 +364,17 @@ IF ACTION-INPUT = 'W' THEN
 END-IF
 ```
 
-**Issues in COBOL:**
-- No validation for negative balance
+**COBOL Behavior:**
+- No validation for negative balance (allows overdraft)
 - No transaction history
 - No error handling for insufficient funds
 - Direct VSAM updates without rollback capability
 
-### Modern Implementation Benefits
-1. **Validation**: Check sufficient funds before withdrawal
-2. **History**: All transactions logged with timestamps
-3. **Atomicity**: Transfer is atomic (both accounts updated or neither)
-4. **Error Handling**: Graceful failure with descriptive messages
-5. **Audit Trail**: Complete history for compliance
-6. **Format Handling**: Proper currency formatting (cents)
+### Modern Implementation Approach
+1. **Match COBOL Behavior**: Allow negative balances on withdrawal
+2. **Basic Logging**: Optional transaction records for debugging
+3. **Simple Validation**: Check amount is positive and valid
+4. **Direct Updates**: Match COBOL's direct update approach
 
 ## Currency Handling
 

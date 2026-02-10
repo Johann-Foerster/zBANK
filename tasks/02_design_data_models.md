@@ -19,14 +19,14 @@ We need to modernize this to use JSON-based storage with proper data types and v
 ```typescript
 interface Account {
   accountNumber: string;      // 10-digit account number
-  pin: string;                // Hashed PIN (not plain text)
+  pin: string;                // Hashed PIN (not plain text for security)
   balance: number;            // Balance in cents (avoid floating point)
   createdAt: Date;           // Creation timestamp
   updatedAt: Date;           // Last modification timestamp
-  isLocked: boolean;         // Account lock status
-  failedLoginAttempts: number; // Security counter
 }
 ```
+
+**Note**: We only add hashing for PINs (critical security). Fields like `isLocked` and `failedLoginAttempts` are NOT included to stay true to COBOL.
 
 #### Transaction Model
 ```typescript
@@ -142,18 +142,14 @@ interface IStorage {
     "pin": "$2b$10$...",  // bcrypt hash
     "balance": 10000,      // $100.00 in cents
     "createdAt": "2026-01-01T00:00:00Z",
-    "updatedAt": "2026-02-10T19:30:00Z",
-    "isLocked": false,
-    "failedLoginAttempts": 0
+    "updatedAt": "2026-02-10T19:30:00Z"
   },
   "1234567890": {
     "accountNumber": "1234567890",
     "pin": "$2b$10$...",
     "balance": 20000,      // $200.00 in cents
     "createdAt": "2026-01-01T00:00:00Z",
-    "updatedAt": "2026-02-10T19:30:00Z",
-    "isLocked": false,
-    "failedLoginAttempts": 0
+    "updatedAt": "2026-02-10T19:30:00Z"
   }
 }
 ```

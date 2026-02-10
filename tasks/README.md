@@ -65,9 +65,9 @@ This modernization plan transforms the COBOL mainframe banking application into 
 
 - **Task 05**: Implement Transaction Processing
   - Deposit transactions
-  - Withdrawal transactions (with overdraft protection)
-  - Transfer transactions (new feature, not in COBOL)
-  - Transaction history recording
+  - Withdrawal transactions (matching COBOL behavior)
+  - Transfer transactions (placeholder like COBOL)
+  - Basic transaction processing
 
 ### Phase 3: User Interface (Tasks 6-8)
 **Goal**: Build all screen components with React Ink
@@ -112,16 +112,16 @@ This modernization plan transforms the COBOL mainframe banking application into 
 
 | Feature | COBOL Status | React CLI Status | Notes |
 |---------|-------------|------------------|-------|
-| **Login Authentication** | ✓ Complete | ✓ Enhanced | Added PIN hashing, lockout |
-| **Balance Display** | ✓ Complete | ✓ Complete | Better formatting |
-| **Deposit** | ✓ Complete | ✓ Complete | With transaction history |
-| **Withdrawal** | ✓ Complete | ✓ Enhanced | Added overdraft protection |
-| **Transfer** | ✗ Not Implemented | ✓ New Feature | Between accounts |
-| **Registration** | ⚠ Partial | ✓ Complete | Full workflow implemented |
-| **Transaction History** | ✗ None | ✓ New Feature | All transactions logged |
-| **Security** | ⚠ Plain text PINs | ✓ Enhanced | Hashed PINs, lockout |
-| **Account Lockout** | ✗ None | ✓ New Feature | After 3 failed attempts |
-| **Audit Trail** | ✗ None | ✓ New Feature | All operations logged |
+| **Login Authentication** | ✓ Complete | ✓ Replicated | PIN hashing for security |
+| **Balance Display** | ✓ Complete | ✓ Complete | Similar functionality |
+| **Deposit** | ✓ Complete | ✓ Complete | Matches COBOL behavior |
+| **Withdrawal** | ✓ Complete | ✓ Complete | Matches COBOL (no overdraft check) |
+| **Transfer** | ✗ Not Implemented | ✗ Placeholder | Kept as placeholder like COBOL |
+| **Registration** | ⚠ Partial | ⚠ Partial | Matches COBOL skeleton |
+| **Transaction History** | ✗ None | ✗ None | Not in original COBOL |
+| **Security** | ⚠ Plain text PINs | ✓ Improved | Hashed PINs (security only) |
+| **Account Lockout** | ✗ None | ✗ None | Staying true to original |
+| **Audit Trail** | ✗ None | ✗ None | Not in original COBOL |
 
 ## Data Migration
 

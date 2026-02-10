@@ -1,77 +1,80 @@
 # Task 08: Build Registration Screen
 
 ## Objective
-Create the React Ink registration screen component to allow new account creation, completing the functionality that was only partially implemented in COBOL.
+Create the React Ink registration screen component matching the COBOL partial implementation (skeleton only).
 
 ## Background
-The COBOL ZRGSTR screen exists but registration logic is incomplete. We need to:
-- Implement full account creation workflow
-- Generate unique account numbers
-- Set initial PIN
-- Set initial balance
-- Validate inputs
+The COBOL ZRGSTR screen exists but registration logic is incomplete - it's a skeleton/placeholder. To stay true to the original, we'll implement a similar skeleton that shows the UI but doesn't actually create accounts.
 
 ## Requirements
 
 ### Component Specification
 ```typescript
 interface RegisterScreenProps {
-  onSuccess: () => void;
-  onCancel: () => void;
+  onBack: () => void;
 }
 ```
 
-### Registration Flow
-1. Generate or input account number
-2. Set 4-digit PIN
-3. Confirm PIN
-4. Set initial deposit (optional)
-5. Create account in storage
-6. Return to login screen
+### Registration Screen
+Display registration UI matching COBOL but keep it as a placeholder:
+1. Show account number field
+2. Show PIN fields
+3. Display "Registration not yet implemented" message
+4. Allow return to login (Q key)
 
 ## Deliverables
 
-1. **RegisterScreen Component**
+1. **RegisterScreen Component (Skeleton Only)**
    ```typescript
    // src/components/screens/RegisterScreen.tsx
-   import React, { useState } from 'react';
+   import React from 'react';
    import { Box, Text } from 'ink';
    import TextInput from 'ink-text-input';
    
-   enum RegistrationStep {
-     ACCOUNT_NUMBER = 'ACCOUNT_NUMBER',
-     PIN = 'PIN',
-     CONFIRM_PIN = 'CONFIRM_PIN',
-     INITIAL_DEPOSIT = 'INITIAL_DEPOSIT',
-     CONFIRM = 'CONFIRM',
-   }
-   
-   export const RegisterScreen: React.FC<RegisterScreenProps> = ({
-     onSuccess,
-     onCancel
-   }) => {
-     const [step, setStep] = useState(RegistrationStep.ACCOUNT_NUMBER);
+   export const RegisterScreen: React.FC<RegisterScreenProps> = ({ onBack }) => {
      const [accountNumber, setAccountNumber] = useState('');
      const [pin, setPin] = useState('');
-     const [confirmPin, setConfirmPin] = useState('');
-     const [initialDeposit, setInitialDeposit] = useState('0.00');
-     const [error, setError] = useState('');
-     const [isProcessing, setIsProcessing] = useState(false);
      
-     const generateAccountNumber = (): string => {
-       // Generate random 10-digit account number
-       return Math.floor(1000000000 + Math.random() * 9000000000).toString();
-     };
-     
-     const handleAccountNumberSubmit = async () => {
-       const accNum = accountNumber || generateAccountNumber();
-       
-       // Check if account exists
-       const existing = await storage.getAccount(accNum);
-       if (existing) {
-         setError('Account number already exists');
-         return;
-       }
+     return (
+       <Box flexDirection="column" padding={1}>
+         <Header title="zBANK REGISTER" />
+         
+         <Box flexDirection="column" marginTop={2}>
+           <Text>Account Number (10 digits):</Text>
+           <TextInput
+             value={accountNumber}
+             onChange={setAccountNumber}
+             placeholder="0000000000"
+           />
+         </Box>
+         
+         <Box flexDirection="column" marginTop={1}>
+           <Text>PIN (4 digits):</Text>
+           <TextInput
+             value={pin}
+             onChange={setPin}
+             mask="*"
+             placeholder="****"
+           />
+         </Box>
+         
+         <Box marginTop={2}>
+           <Text color="yellow">
+             ⚠ Registration functionality not yet implemented (matching COBOL)
+           </Text>
+         </Box>
+         
+         <Footer
+           actions={[
+             { key: 'Q', label: 'Back to Login', handler: onBack },
+           ]}
+         />
+       </Box>
+     );
+   };
+   ```
+
+**Note**: This matches the COBOL implementation which has the UI but no actual registration logic.
        
        setAccountNumber(accNum);
        setStep(RegistrationStep.PIN);

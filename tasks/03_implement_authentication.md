@@ -1,7 +1,7 @@
 # Task 03: Implement Authentication System
 
 ## Objective
-Create a secure authentication system to replace the COBOL login mechanism, implementing PIN validation with modern security practices.
+Create an authentication system to replicate the COBOL login mechanism, with PIN hashing as the only enhancement for basic security.
 
 ## Background
 The COBOL application uses simple PIN comparison:
@@ -10,24 +10,24 @@ The COBOL application uses simple PIN comparison:
 - No account lockout or brute-force protection
 - No encryption
 
-We need to modernize this with proper security measures.
+We need to replicate this behavior but use PIN hashing for basic security (storing plain text passwords is a critical security vulnerability that must be addressed even in a faithful migration).
 
 ## Requirements
 
 ### Authentication Service
 Create an authentication service that handles:
 - User login with account number and PIN
-- PIN hashing and verification
-- Account lockout after failed attempts
-- Session management
+- PIN hashing and verification (security requirement only)
+- Simple session management (like COBOL's VSAM lock)
 - Logout functionality
 
-### Security Features
-1. **PIN Hashing**: Use bcrypt or argon2 for password hashing
-2. **Account Lockout**: Lock account after 3 failed attempts
-3. **Session Management**: Keep user logged in during CLI session
-4. **Input Validation**: Validate account numbers and PINs
-5. **Audit Logging**: Log all authentication attempts
+### Security Note
+**The only enhancement from COBOL is PIN hashing.** We will NOT implement:
+- Account lockout after failed attempts
+- Brute-force protection
+- Audit logging
+
+This stays true to the original COBOL implementation.
 
 ## Deliverables
 
@@ -105,16 +105,14 @@ Create an authentication service that handles:
 
 4. Create `src/services/SessionManager.ts` for session handling
 
-5. Implement account lockout mechanism:
-   - Increment `failedLoginAttempts` on failed login
-   - Lock account when attempts reach 3
-   - Reset attempts on successful login
+5. Simple login mechanism (matching COBOL):
+   - No failed attempt tracking
+   - No account lockout
+   - Just PIN verification
 
-6. Add audit logging for security events
+6. Write comprehensive unit tests
 
-7. Write comprehensive unit tests
-
-8. Update seed data to include hashed PINs
+7. Update seed data to include hashed PINs
 
 ## Testing
 
@@ -132,23 +130,6 @@ describe('AuthService', () => {
     expect(result.success).toBe(false);
     expect(result.error).toContain('Invalid PIN');
   });
-  
-  it('should lock account after 3 failed attempts', async () => {
-    await authService.login('0000012345', '9999');
-    await authService.login('0000012345', '9999');
-    const result = await authService.login('0000012345', '9999');
-    
-    expect(result.success).toBe(false);
-    expect(result.error).toContain('locked');
-  });
-  
-  it('should reset attempts on successful login', async () => {
-    await authService.login('0000012345', '9999'); // Failed
-    const result = await authService.login('0000012345', '1111'); // Success
-    
-    expect(result.success).toBe(true);
-    expect(result.account?.failedLoginAttempts).toBe(0);
-  });
 });
 ```
 
@@ -161,20 +142,18 @@ describe('AuthService', () => {
 ## Security Considerations
 
 ### COBOL vs Modern Approach
-| Aspect | COBOL (Insecure) | Modern (Secure) |
+| Aspect | COBOL | React CLI |
 |--------|------------------|-----------------|
-| PIN Storage | Plain text | bcrypt hash |
-| Failed Attempts | Unlimited | 3 attempts, then lock |
-| Session Management | VSAM lock only | In-memory session + audit |
-| Audit Trail | None | All auth events logged |
-| Brute Force Protection | None | Account lockout |
+| PIN Storage | Plain text | bcrypt hash (security only) |
+| Failed Attempts | Unlimited | Unlimited (matching COBOL) |
+| Session Management | VSAM lock only | In-memory session |
+| Audit Trail | None | None (matching COBOL) |
+| Brute Force Protection | None | None (matching COBOL) |
 
-### Best Practices
-1. **Never log sensitive data** (PINs, hashes)
-2. **Use constant-time comparison** for PIN verification
-3. **Implement rate limiting** if exposing as API later
-4. **Add 2FA support** in future enhancement
-5. **Encrypt audit logs** containing sensitive info
+### Implementation Note
+The only enhancement from COBOL is PIN hashing. This is a critical security requirement that cannot be avoided (storing plain text passwords is a severe security vulnerability).
+
+All other aspects stay true to the original COBOL behavior.
 
 ## Migration from COBOL
 

@@ -76,7 +76,8 @@ interface HomeScreenProps {
        setIsProcessing(true);
        setMessage('');
        
-       const amountInCents = parseFloat(amount) * 100;
+       // Parse as integer cents to avoid floating-point rounding errors
+       const amountInCents = Math.round(parseFloat(amount) * 100);
        
        try {
          let result: TransactionResult;
@@ -89,8 +90,10 @@ interface HomeScreenProps {
              result = await transactionService.withdraw(account.accountNumber, amountInCents);
              break;
            case 'transfer':
-             // Handled separately with additional screen
-             break;
+             // Transfer not implemented in original COBOL - skip for now
+             setMessage('Transfer functionality not yet implemented');
+             setIsProcessing(false);
+             return;
            default:
              return;
          }

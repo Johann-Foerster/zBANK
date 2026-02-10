@@ -205,7 +205,7 @@ This is the final task to bring everything together, add quality-of-life improve
 
 5. **Help Screen**
    ```typescript
-   // src/components/screens/HelpScreen.tsx
+   // src/screens/HelpScreen.tsx
    export const HelpScreen: React.FC<{ onBack: () => void }> = ({ onBack }) => {
      return (
        <Box flexDirection="column" padding={1}>
