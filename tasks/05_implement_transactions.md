@@ -1,16 +1,16 @@
 # Task 05: Implement Transaction Processing
 
 ## Objective
-Create the core banking transaction logic for deposits and withdrawals, replicating the COBOL transaction processing behavior.
+Create the core banking transaction logic for deposits and withdrawals, replicating the COBOL transaction processing behavior. Transfer remains a placeholder (matching COBOL).
 
 ## Background
 The COBOL application supports:
 - **Deposit (D)**: Add funds to balance
-- **Withdrawal (W)**: Subtract funds from balance
-- **Transfer (T)**: Not implemented in COBOL (placeholder only)
+- **Withdrawal (W)**: Subtract funds from balance (allows negative balances)
+- **Transfer (T)**: Not implemented in COBOL (placeholder only) - we keep it as a placeholder
 - **Quit (Q)**: Exit to login screen
 
-We need to implement deposits and withdrawals matching the COBOL behavior (including allowing negative balances as COBOL does).
+We need to implement deposits and withdrawals matching the COBOL behavior (including allowing negative balances as COBOL does). Transfer will remain a placeholder returning "not implemented".
 
 ## Requirements
 
@@ -119,56 +119,11 @@ interface ValidationResult {
      }
      
      async transfer(fromAccount: string, toAccount: string, amount: number): Promise<TransactionResult> {
-       // Validate amount
-       const validation = this.validateAmount(amount);
-       if (!validation.valid) {
-         return { success: false, error: validation.error };
-       }
-       
-       // Get both accounts
-       const from = await this.storage.getAccount(fromAccount);
-       const to = await this.storage.getAccount(toAccount);
-       
-       if (!from || !to) {
-         return { success: false, error: 'Account not found' };
-       }
-       
-       // Check sufficient funds
-       if (from.balance < amount) {
-         return { success: false, error: 'Insufficient funds' };
-       }
-       
-       // Perform atomic transfer
-       const newFromBalance = from.balance - amount;
-       const newToBalance = to.balance + amount;
-       
-       // Record withdrawal from source account
-       const withdrawalTxn = await this.storage.addTransaction({
-         accountNumber: fromAccount,
-         type: 'transfer',
-         amount: -amount,  // Negative for outgoing
-         balanceBefore: from.balance,
-         balanceAfter: newFromBalance,
-         status: 'completed',
-         description: `Transfer to ${toAccount}`
-       });
-       
-       // Record deposit to destination account
-       await this.storage.addTransaction({
-         accountNumber: toAccount,
-         type: 'transfer',
-         amount: amount,  // Positive for incoming
-         balanceBefore: to.balance,
-         balanceAfter: newToBalance,
-         status: 'completed',
-         description: `Transfer from ${fromAccount}`
-       });
-       
-       // Update both accounts
-       await this.storage.updateAccount(fromAccount, { balance: newFromBalance });
-       await this.storage.updateAccount(toAccount, { balance: newToBalance });
-       
-       return { success: true, transaction: withdrawalTxn, newBalance: newFromBalance };
+       // Transfer not implemented in COBOL - return placeholder
+       return { 
+         success: false, 
+         error: 'Transfer functionality not implemented (matching COBOL behavior)' 
+       };
      }
      
      validateAmount(amount: number): ValidationResult {
@@ -319,21 +274,11 @@ describe('TransactionService', () => {
   });
   
   describe('transfer', () => {
-    it('should transfer funds between accounts', async () => {
-      mockStorage.getAccount
-        .mockResolvedValueOnce({  // From account
-          accountNumber: '0000012345',
-          balance: 10000,
-        })
-        .mockResolvedValueOnce({  // To account
-          accountNumber: '1234567890',
-          balance: 20000,
-        });
-      
+    it('should return not implemented error (matching COBOL)', async () => {
       const result = await service.transfer('0000012345', '1234567890', 5000);
       
-      expect(result.success).toBe(true);
-      expect(mockStorage.updateAccount).toHaveBeenCalledTimes(2);
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('not implemented');
     });
   });
 });

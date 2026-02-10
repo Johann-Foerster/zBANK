@@ -55,8 +55,6 @@ interface HomeScreenProps {
      const actions = [
        { label: 'Deposit', value: 'deposit' },
        { label: 'Withdraw', value: 'withdraw' },
-       { label: 'Transfer', value: 'transfer' },
-       { label: 'Transaction History', value: 'history' },
        { label: 'Logout', value: 'logout' },
      ];
      
@@ -275,10 +273,10 @@ interface HomeScreenProps {
 
 - [x] Home screen displays account number and balance
 - [x] Balance formatted correctly as currency ($XXX.XX)
-- [x] Action menu shows all transaction options
+- [x] Action menu shows deposit and withdraw options (matching COBOL)
 - [x] Amount input accepts currency format (XX.XX)
 - [x] Deposit transactions update balance immediately
-- [x] Withdraw transactions validate sufficient funds
+- [x] Withdraw transactions apply even if balance becomes negative (no sufficient-funds validation, matching COBOL behavior)
 - [x] Success messages show in green
 - [x] Error messages show in red
 - [x] Loading indicator shows during processing

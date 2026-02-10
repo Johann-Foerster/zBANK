@@ -56,7 +56,7 @@ This is the final task to bring everything together, add quality-of-life improve
      useEffect(() => {
        const timer = setTimeout(onComplete, 2000);
        return () => clearTimeout(timer);
-     }, []);
+     }, [onComplete]);
      
      return (
        <Box flexDirection="column" alignItems="center" justifyContent="center">
@@ -114,13 +114,14 @@ This is the final task to bring everything together, add quality-of-life improve
 4. **Enhanced App Component**
    ```typescript
    // src/components/App.tsx
-   import React, { useState, useEffect } from 'react';
+   import React, { useState } from 'react';
    import { Box, useApp } from 'ink';
    import { SplashScreen } from './SplashScreen';
    import { LoginScreen } from './screens/LoginScreen';
    import { HomeScreen } from './screens/HomeScreen';
    import { RegisterScreen } from './screens/RegisterScreen';
    import { HelpScreen } from './screens/HelpScreen';
+   import { Account } from '../models/Account';
    
    enum AppState {
      SPLASH = 'SPLASH',

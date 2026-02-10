@@ -26,7 +26,7 @@ interface Account {
 }
 ```
 
-**Note**: We only add hashing for PINs (critical security). Fields like `isLocked` and `failedLoginAttempts` are NOT included to stay true to COBOL.
+**Note**: We only add hashing for PINs (critical security). To stay true to COBOL behavior, we do not introduce extra account-control fields (such as `isLocked` or `failedLoginAttempts`) or stricter balance rules; negative balances/overdrafts must remain allowed as the COBOL system permits them.
 
 #### Transaction Model
 ```typescript
@@ -96,7 +96,7 @@ interface IStorage {
 5. **Validation Layer**
    - Account number format validation (10 digits)
    - PIN format validation (4 digits input, hashed storage)
-   - Balance validation (non-negative for withdrawals)
+   - Balance validation (numeric, integer cents; allow negative balances/overdrafts to match COBOL behavior)
    - Input sanitization
 
 ## Acceptance Criteria

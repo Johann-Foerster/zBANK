@@ -49,10 +49,9 @@ This modernization plan transforms the COBOL mainframe banking application into 
   - Add data validation
 
 - **Task 03**: Implement Authentication System
-  - Build login service with PIN hashing (bcrypt)
-  - Add account lockout after failed attempts
+  - Build login service with PIN hashing (bcrypt) that mirrors COBOL authentication rules
   - Implement session management
-  - Security improvements over COBOL plain-text PINs
+  - Security improvement: PIN hashing only (no lockout or attempt tracking)
 
 ### Phase 2: Business Logic (Tasks 4-5)
 **Goal**: Implement navigation and transaction processing
@@ -85,11 +84,11 @@ This modernization plan transforms the COBOL mainframe banking application into 
   - Success/error feedback
 
 - **Task 08**: Build Registration Screen
-  - Multi-step wizard
-  - Auto-generate account numbers
-  - PIN setup with confirmation
-  - Initial deposit option
-  - Complete implementation (COBOL had skeleton only)
+  - Placeholder-only registration UI (no real account creation)
+  - Basic input fields matching COBOL skeleton behavior
+  - Clear messaging that registration is not yet available
+  - Navigation back to Login screen
+  - Maintains parity with COBOL's partial/skeleton implementation
 
 ### Phase 4: Completion (Tasks 9-10)
 **Goal**: Testing, documentation, and final polish
@@ -250,9 +249,8 @@ After initialization, these accounts will be available:
 - [x] User can log in with account number and PIN
 - [x] User can view account balance
 - [x] User can deposit funds
-- [x] User can withdraw funds (with validation)
-- [x] User can register new account
-- [x] User can view transaction history
+- [x] User can withdraw funds (allows negative balances like COBOL)
+- [x] User can access registration screen (skeleton only, no account creation)
 - [x] Application runs locally without server
 - [x] Data persists between sessions
 

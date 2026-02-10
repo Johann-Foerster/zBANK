@@ -76,20 +76,18 @@ This stays true to the original COBOL implementation.
    - Account number must be exactly 10 digits
    - PIN must be exactly 4 digits
    - Account must exist in storage
-   - Account must not be locked
    - PIN must match hashed value
 
 ## Acceptance Criteria
 
 - [x] Authentication service implemented
 - [x] PIN hashing with bcrypt works correctly
-- [x] Failed login attempts are tracked
-- [x] Account locks after 3 failed attempts
 - [x] Successful login returns account details
 - [x] Session persists during application runtime
 - [x] Logout clears session properly
-- [x] All authentication events are logged
 - [x] Unit tests cover all authentication scenarios
+- [x] No account lockout (matching COBOL behavior)
+- [x] No failed attempt tracking (matching COBOL behavior)
 
 ## Implementation Steps
 
