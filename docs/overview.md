@@ -361,9 +361,9 @@ Process:
 ```
 
 **Example:**
-- Starting Balance: $100 (0000000100)
-- Deposit Amount: $50 (0000000050)
-- New Balance: $150 (0000000150)
+- Starting Balance: $100.00 (0000100000)
+- Deposit Amount: $50.00 (0000050000)
+- New Balance: $150.00 (0000150000)
 
 #### **Withdrawal Transaction (Action 'W')**
 ```cobol
