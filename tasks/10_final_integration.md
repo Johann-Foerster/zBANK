@@ -331,7 +331,7 @@ This is the final task to bring everything together, add quality-of-life improve
 
 2. Create `src/components/SplashScreen.tsx`
 
-3. Create `src/screens/HelpScreen.tsx`
+3. Create `src/components/screens/HelpScreen.tsx`
 
 4. Create `src/utils/storage-init.ts`
 
