@@ -249,8 +249,10 @@ Record 2: Account=1234567890, PIN=0000001234, Balance=0000000200
 ```
 Position 1-10:  Account Number (numeric, right-justified with leading zeros)
 Position 11-20: PIN Code (numeric, right-justified with leading zeros)
-Position 21-30: Balance in cents (numeric, e.g., 100 = $1.00)
+Position 21-30: Balance in whole dollars (numeric, e.g., 100 = $100, 200 = $200)
 ```
+
+**Note:** The balance field stores whole dollar amounts without decimal places. The COBOL program uses `PIC 9(10)` without decimal scaling, so arithmetic operations work directly on dollar amounts.
 
 ---
 
@@ -361,9 +363,9 @@ Process:
 ```
 
 **Example:**
-- Starting Balance: $100.00 (0000100000)
-- Deposit Amount: $50.00 (0000050000)
-- New Balance: $150.00 (0000150000)
+- Starting Balance: $100 (0000000100)
+- Deposit Amount: $50 (0000000050)
+- New Balance: $150 (0000000150)
 
 #### **Withdrawal Transaction (Action 'W')**
 ```cobol
@@ -563,10 +565,12 @@ Verify: CEMT I TRANSACTION(ZBNK) shows enabled
 ```
 1. From CICS terminal, enter transaction: ZBNK
 2. Login screen should appear
-3. Test with account: 0000012345, PIN: 1111
+3. Test with account: 0000012345, PIN: 1111 (stored as 0000001111)
 4. Perform deposit/withdrawal transactions
 5. Verify balance updates correctly
 ```
+
+**Note:** The BMS map accepts 4-digit PIN input from the user, but PINs are stored as zero-padded 10-digit numeric values in VSAM (e.g., user enters `1111`, stored as `0000001111`).
 
 ---
 
