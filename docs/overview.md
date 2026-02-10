@@ -553,7 +553,7 @@ Verify: Mapset object in DFH530.CICS.SDFHLOAD
 #### Step 5: Define CICS Resources
 ```
 Execute CICS_install.cbl commands in CICS region:
-1. Define and install MAPSET(ZBANKSET)
+1. Define and install MAPSET(ZBNKSET)
 2. Define and install TRANSACTION(ZBNK), PROGRAM(ZBANK), LIBRARY(ZLOAD)
 3. Define and install FILE(VSAMZBNK) with UPDATE=YES
 Verify: CEMT I TRANSACTION(ZBNK) shows enabled
