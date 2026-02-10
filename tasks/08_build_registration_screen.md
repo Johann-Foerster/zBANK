@@ -336,7 +336,7 @@ interface RegisterScreenProps {
      }
      
      // Check for sequential digits
-     const isSequential = this.checkSequential(pin);
+     const isSequential = checkSequential(pin);
      if (isSequential) {
        feedback.push('Avoid sequential patterns (e.g., 1234)');
      } else {
