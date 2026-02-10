@@ -15,7 +15,11 @@ interface HomeScreenProps {
   onRegister?: () => void;
 }
 
-export const HomeScreen: React.FC<HomeScreenProps> = ({ onLogout: _onLogout, onRegister: _onRegister }) => {
+export const HomeScreen: React.FC<HomeScreenProps> = ({ onLogout, onRegister }) => {
+  // Placeholder component - will be fully implemented in Task 07
+  // Props are intentionally unused in this placeholder
+  void onLogout;
+  void onRegister;
   return (
     <Box flexDirection="column">
       <Header title="HOME SCREEN" />

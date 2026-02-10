@@ -15,7 +15,11 @@ interface RegisterScreenProps {
   onSuccess?: () => void;
 }
 
-export const RegisterScreen: React.FC<RegisterScreenProps> = ({ onBack: _onBack, onSuccess: _onSuccess }) => {
+export const RegisterScreen: React.FC<RegisterScreenProps> = ({ onBack, onSuccess }) => {
+  // Placeholder component - will be fully implemented in Task 08
+  // Props are intentionally unused in this placeholder
+  void onBack;
+  void onSuccess;
   return (
     <Box flexDirection="column">
       <Header title="REGISTRATION SCREEN" />

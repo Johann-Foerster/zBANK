@@ -15,7 +15,11 @@ interface LoginScreenProps {
   onRegister?: () => void;
 }
 
-export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess: _onSuccess, onRegister: _onRegister }) => {
+export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onRegister }) => {
+  // Placeholder component - will be fully implemented in Task 06
+  // Props are intentionally unused in this placeholder
+  void onSuccess;
+  void onRegister;
   return (
     <Box flexDirection="column">
       <Header title="LOGIN SCREEN" />

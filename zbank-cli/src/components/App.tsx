@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { Box } from 'ink';
+import { Box, Text } from 'ink';
 import { useNavigation } from '../contexts/NavigationContext.js';
 import { AppState } from '../types/navigation.js';
 import { LoginScreen } from './screens/LoginScreen.js';
@@ -47,11 +47,7 @@ export const App: React.FC = () => {
         return <ExitScreen />;
 
       default:
-        return (
-          <Box>
-            <Box>Unknown state: {currentState}</Box>
-          </Box>
-        );
+        return <Box><Text>Unknown state: {currentState}</Text></Box>;
     }
   };
 
