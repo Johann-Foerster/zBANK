@@ -128,7 +128,7 @@ START → Initialize Screen State (0)
 
 #### 2. **CICS.JCL_ZMAPSET_.cbl** (BMS Mapset)
 **Purpose:** Screen layout definitions for user interface  
-**Mapset Name:** ZBNKSET  
+**Mapset Name:** ZBANKSET  
 **Type:** MAP, MODE=INOUT, LANG=COBOL2
 
 **Three Maps Defined:**
