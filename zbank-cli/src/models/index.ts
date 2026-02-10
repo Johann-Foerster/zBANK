@@ -4,20 +4,26 @@
  * Exports all model interfaces, types, and validation schemas
  */
 
-export {
+export type {
   Account,
-  AccountSchema,
-  CreateAccountSchema,
-  UpdateAccountSchema,
   CreateAccount,
   UpdateAccount,
 } from './Account';
 
 export {
+  AccountSchema,
+  CreateAccountSchema,
+  UpdateAccountSchema,
+} from './Account';
+
+export type {
   Transaction,
+  CreateTransaction,
+} from './Transaction';
+
+export {
   TransactionType,
   TransactionStatus,
   TransactionSchema,
   CreateTransactionSchema,
-  CreateTransaction,
 } from './Transaction';
