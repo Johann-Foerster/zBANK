@@ -241,7 +241,6 @@ async login(accountNumber: string, pin: string): Promise<AuthResult> {
 - Task 02: Design Data Models and Storage Layer
 - Task 04: Create CLI Menu Navigation
 - Task 06: Build Login Screen Component
-- Task 12: Implement Security Enhancements
 
 ## References
 - COBOL authentication: `docs/overview.md` (lines 103-108, 403-413)
