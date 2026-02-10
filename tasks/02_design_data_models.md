@@ -179,7 +179,7 @@ interface IStorage {
 - Task 01: Initialize React CLI Application
 - Task 03: Implement Authentication System
 - Task 05: Implement Transaction Processing
-- Task 09: Add Data Persistence and Migration
+- Task 09: Testing and Documentation
 
 ## References
 - VSAM structure: `docs/overview.md` (lines 57-62, 195-210)
