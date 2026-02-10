@@ -306,12 +306,6 @@ describe('AuthService', () => {
       expect(result.success).toBe(true);
     });
 
-    it('should not return attempts remaining (matching COBOL)', async () => {
-      const result = await authService.login('0000012345', '9999');
-
-      expect(result.attemptsRemaining).toBeUndefined();
-    });
-
     it('should use simple session management (like VSAM lock)', async () => {
       await authService.login('0000012345', '1111');
 

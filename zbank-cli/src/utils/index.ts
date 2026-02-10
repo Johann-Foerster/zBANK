@@ -19,7 +19,6 @@ export {
 } from './validation.js';
 
 export {
-  hashPin as hashPinCrypto,
   verifyPin,
 } from './crypto.js';
 

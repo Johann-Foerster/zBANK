@@ -11,7 +11,6 @@ export interface AuthResult {
   success: boolean;
   account?: Account;
   error?: string;
-  attemptsRemaining?: number;
 }
 
 /**
