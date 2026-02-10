@@ -1,8 +1,6 @@
 ---
 applyTo:
   - "zbank-cli/**"
-excludeAgent:
-  - code-review
 ---
 
 # TypeScript CLI Instructions (zbank-cli)
@@ -57,7 +55,8 @@ zbank-cli/
 
 ### Naming Conventions
 - **Components**: PascalCase (e.g., `LoginScreen`, `TransactionList`)
-- **Files**: kebab-case for utilities, PascalCase for components (e.g., `login-screen.tsx`)
+- **Component Files**: PascalCase matching component name (e.g., `LoginScreen.tsx`, `TransactionList.tsx`)
+- **Utility Files**: kebab-case (e.g., `format-currency.ts`, `validate-pin.ts`)
 - **Variables/Functions**: camelCase (e.g., `accountBalance`, `processDeposit`)
 - **Constants**: UPPER_SNAKE_CASE (e.g., `MAX_RETRY_ATTEMPTS`)
 - **Interfaces/Types**: PascalCase with descriptive names (e.g., `UserAccount`, `TransactionType`)
