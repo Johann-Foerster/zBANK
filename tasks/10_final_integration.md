@@ -29,7 +29,6 @@ This is the final task to bring everything together, add quality-of-life improve
 1. **Main Application Entry Point**
    ```typescript
    // src/index.tsx
-   #!/usr/bin/env node
    
    import React from 'react';
    import { render } from 'ink';
