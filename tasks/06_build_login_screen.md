@@ -78,7 +78,6 @@ interface LoginScreenProps {
              value={accountNumber}
              onChange={setAccountNumber}
              onSubmit={() => setFocusedField('pin')}
-             mask={focusedField === 'account' ? undefined : '*'}
              placeholder="0000000000"
            />
          </Box>
