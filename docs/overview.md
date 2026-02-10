@@ -440,7 +440,8 @@ END-EXEC
 ### Authentication Mechanism
 - **Two-factor:** Account number + PIN
 - **PIN Storage:** Plain text in VSAM (NOT SECURE for production)
-- **PIN Length:** Fixed 4 digits (weak security)
+- **PIN Length (UI):** User must enter a fixed 4-digit PIN (weak security)
+- **PIN Storage Format:** Stored as a 10-digit, zero-padded numeric field in VSAM (e.g., UI PIN `1111` is stored as `0000001111`)
 - **Validation:** Simple numeric comparison
 
 ### Identified Security Issues
