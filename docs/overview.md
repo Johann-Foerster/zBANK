@@ -88,10 +88,11 @@ The application simulates a simple banking system where users can:
   - VSAM file operations (READ UPDATE, REWRITE, UNLOCK)
 
 **Data Structure:**
+User PINs are entered as fixed 4-digit values in the UI but are stored as zero-padded 10-digit numeric fields in the VSAM record.
 ```cobol
 WS-FILE-REC (30 bytes total):
 ├─ WS-ACCNO    PIC 9(10)  [Account Number - 10 bytes]
-├─ WS-PIN      PIC 9(10)  [PIN Code - 10 bytes]
+├─ WS-PIN      PIC 9(10)  [PIN Code - stored as 10-digit zero-padded numeric; UI accepts 4-digit PIN]
 └─ WS-BALANCE  PIC 9(10)  [Balance - 10 bytes]
 ```
 
