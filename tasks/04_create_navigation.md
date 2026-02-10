@@ -91,16 +91,19 @@ interface NavigationContext {
      const [history, setHistory] = useState<AppState[]>([]);
      
      const navigateTo = (state: AppState) => {
-       setHistory([...history, currentState]);
+       setHistory(prevHistory => [...prevHistory, currentState]);
        setCurrentState(state);
      };
      
      const goBack = () => {
-       if (history.length > 0) {
-         const previous = history[history.length - 1];
-         setHistory(history.slice(0, -1));
+       setHistory(prevHistory => {
+         if (prevHistory.length === 0) {
+           return prevHistory;
+         }
+         const previous = prevHistory[prevHistory.length - 1];
          setCurrentState(previous);
-       }
+         return prevHistory.slice(0, -1);
+       });
      };
      
      return (
