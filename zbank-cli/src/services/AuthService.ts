@@ -129,7 +129,7 @@ export class AuthService implements IAuthService {
       // Unlock account if it's locked (like COBOL UNLOCK)
       try {
         await this.storage.unlockAccount(currentUser.accountNumber);
-      } catch (error) {
+      } catch {
         // Ignore unlock errors - session should be cleared anyway
       }
     }
@@ -200,7 +200,7 @@ export class AuthService implements IAuthService {
       }
 
       return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   }
