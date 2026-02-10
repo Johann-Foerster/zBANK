@@ -475,7 +475,7 @@ HOMACT   DFHMDF POS=(14,30),LENGTH=1,ATTRB=UNPROT
 - Task 04: Create CLI Menu Navigation
 - Task 05: Implement Transaction Processing
 - Task 06: Build Login Screen Component
-- Task 10: Add Transaction History View
+- Task 10: Final Integration and Polish
 
 ## References
 - COBOL ZHOME map: `docs/overview.md` (lines 147-156)
