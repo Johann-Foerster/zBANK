@@ -264,8 +264,8 @@ Position 21-30: Balance in cents (numeric, e.g., 100 = $1.00)
 
 **Phase 1: BMS Mapset Installation**
 ```
-CEDA DEFINE MAPSET(ZBANKSET) GROUP(ZBANK)
-CEDA INSTALL MAPSET(ZBANKSET) GROUP(ZBANK)
+CEDA DEFINE MAPSET(ZBNKSET) GROUP(ZBANK)
+CEDA INSTALL MAPSET(ZBNKSET) GROUP(ZBANK)
 ```
 
 **Phase 2: Transaction and Program Installation**
