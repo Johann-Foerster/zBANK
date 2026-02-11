@@ -6,16 +6,22 @@
  * - State 1: Home/Transaction Screen (ZHOME)
  * - State 2: Registration Screen (ZRGSTR)
  * - State 3: Exit Screen
+ * 
+ * Additional states for enhanced UX:
+ * - Splash Screen: Shown on startup
+ * - Help Screen: User guidance and shortcuts
  */
 
 /**
  * Application navigation states
- * Maps to COBOL screen states (0, 1, 2)
+ * Maps to COBOL screen states (0, 1, 2) with additional UX states
  */
 export enum AppState {
+  SPLASH = 'SPLASH',
   LOGIN = 'LOGIN',
   HOME = 'HOME',
   REGISTER = 'REGISTER',
+  HELP = 'HELP',
   EXIT = 'EXIT'
 }
 

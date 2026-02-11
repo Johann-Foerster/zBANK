@@ -9,9 +9,11 @@ import React from 'react';
 import { Box, Text } from 'ink';
 import { useNavigation } from '../contexts/NavigationContext.js';
 import { AppState } from '../types/navigation.js';
+import { SplashScreen } from './SplashScreen.js';
 import { LoginScreen } from './screens/LoginScreen.js';
 import { HomeScreen } from './screens/HomeScreen.js';
 import { RegisterScreen } from './screens/RegisterScreen.js';
+import { HelpScreen } from './screens/HelpScreen.js';
 import { ExitScreen } from './screens/ExitScreen.js';
 
 export const App: React.FC = () => {
@@ -19,11 +21,19 @@ export const App: React.FC = () => {
 
   const renderScreen = () => {
     switch (currentState) {
+      case AppState.SPLASH:
+        return (
+          <SplashScreen
+            onComplete={() => navigateTo(AppState.LOGIN)}
+          />
+        );
+
       case AppState.LOGIN:
         return (
           <LoginScreen
             onSuccess={() => navigateTo(AppState.HOME)}
             onRegister={() => navigateTo(AppState.REGISTER)}
+            onHelp={() => navigateTo(AppState.HELP)}
           />
         );
 
@@ -39,6 +49,13 @@ export const App: React.FC = () => {
           <RegisterScreen
             onBack={() => navigateTo(AppState.LOGIN)}
             onSuccess={() => navigateTo(AppState.LOGIN)}
+          />
+        );
+
+      case AppState.HELP:
+        return (
+          <HelpScreen
+            onBack={() => navigateTo(AppState.LOGIN)}
           />
         );
 

@@ -22,11 +22,12 @@ import { useKeyboard } from '../../hooks/useKeyboard.js';
 interface LoginScreenProps {
   onSuccess: () => void;
   onRegister?: () => void;
+  onHelp?: () => void;
 }
 
 type FocusedField = 'account' | 'pin';
 
-export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onRegister }) => {
+export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onRegister, onHelp }) => {
   const authService = useAuth();
   
   const [accountNumber, setAccountNumber] = useState('');
@@ -121,10 +122,20 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onRegister 
     }
   };
 
+  /**
+   * Handle help keyboard shortcut
+   */
+  const handleHelp = () => {
+    if (onHelp) {
+      onHelp();
+    }
+  };
+
   // Register keyboard shortcuts
   useKeyboard({
     Q: handleExit,
     R: handleRegister,
+    H: handleHelp,
     ESCAPE: handleExit,
   });
 
@@ -185,7 +196,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onRegister 
         )}
       </Box>
 
-      <Footer hints={['[Q] Quit', '[R] Register', '[↵] Login']} />
+      <Footer hints={['[Q] Quit', '[R] Register', '[H] Help', '[↵] Login']} />
     </Box>
   );
 };

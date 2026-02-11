@@ -20,7 +20,7 @@ interface NavigationProviderProps {
  */
 export const NavigationProvider: React.FC<NavigationProviderProps> = ({ 
   children, 
-  initialState = AppState.LOGIN 
+  initialState = AppState.SPLASH 
 }) => {
   const [currentState, setCurrentState] = useState<AppState>(initialState);
   const [history, setHistory] = useState<AppState[]>([]);
