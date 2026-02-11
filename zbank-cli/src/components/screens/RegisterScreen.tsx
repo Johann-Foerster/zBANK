@@ -18,12 +18,23 @@ interface RegisterScreenProps {
   onSuccess?: () => void;
 }
 
+type FocusedField = 'account' | 'pin';
+
 export const RegisterScreen: React.FC<RegisterScreenProps> = ({ onBack, onSuccess }) => {
   const [accountNumber, setAccountNumber] = useState('');
   const [pin, setPin] = useState('');
+  const [focusedField, setFocusedField] = useState<FocusedField>('account');
   
   // Props intentionally unused in this skeleton implementation
   void onSuccess;
+
+  /**
+   * Handle account number submission (Enter key)
+   * Moves focus to PIN field
+   */
+  const handleAccountSubmit = () => {
+    setFocusedField('pin');
+  };
 
   // Handle Q key to go back to login
   useKeyboard({
@@ -42,9 +53,10 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ onBack, onSucces
           <NumericInput
             value={accountNumber}
             onChange={setAccountNumber}
+            onSubmit={handleAccountSubmit}
             maxLength={10}
             placeholder="0000000000"
-            focus={true}
+            focus={focusedField === 'account'}
           />
         </Box>
 
@@ -57,7 +69,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ onBack, onSucces
             maxLength={4}
             mask="*"
             placeholder="****"
-            focus={false}
+            focus={focusedField === 'pin'}
           />
         </Box>
 
