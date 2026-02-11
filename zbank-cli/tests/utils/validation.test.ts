@@ -3,6 +3,7 @@ import {
   isValidAccountNumber,
   isValidPin,
   isValidAmount,
+  validateTransactionAmount,
   hashPin,
   comparePin,
   dollarsToCents,
@@ -64,6 +65,41 @@ describe('Validation Utilities', () => {
 
     it('should reject non-integers', () => {
       expect(isValidAmount(100.5)).toBe(false);
+    });
+  });
+
+  describe('validateTransactionAmount', () => {
+    it('should accept valid positive integers', () => {
+      expect(validateTransactionAmount(100)).toBe(true);
+      expect(validateTransactionAmount(1)).toBe(true);
+      expect(validateTransactionAmount(10000)).toBe(true);
+    });
+
+    it('should accept maximum allowed amount', () => {
+      expect(validateTransactionAmount(1000000000)).toBe(true);
+    });
+
+    it('should reject zero', () => {
+      expect(validateTransactionAmount(0)).toBe(false);
+    });
+
+    it('should reject negative numbers', () => {
+      expect(validateTransactionAmount(-100)).toBe(false);
+      expect(validateTransactionAmount(-1)).toBe(false);
+    });
+
+    it('should reject non-integers', () => {
+      expect(validateTransactionAmount(100.5)).toBe(false);
+      expect(validateTransactionAmount(0.1)).toBe(false);
+    });
+
+    it('should reject amounts exceeding maximum limit', () => {
+      expect(validateTransactionAmount(1000000001)).toBe(false);
+      expect(validateTransactionAmount(2000000000)).toBe(false);
+    });
+
+    it('should accept amount just below maximum', () => {
+      expect(validateTransactionAmount(999999999)).toBe(true);
     });
   });
 

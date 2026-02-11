@@ -32,6 +32,30 @@ export function isValidAmount(amount: number): boolean {
 }
 
 /**
+ * Validate transaction amount with comprehensive checks
+ * @param amount - The amount in cents
+ * @returns true if valid, false otherwise
+ */
+export function validateTransactionAmount(amount: number): boolean {
+  // Must be an integer
+  if (!Number.isInteger(amount)) {
+    return false;
+  }
+  
+  // Must be positive
+  if (amount <= 0) {
+    return false;
+  }
+  
+  // Must not exceed maximum limit ($10 million = 1,000,000,000 cents)
+  if (amount > 1000000000) {
+    return false;
+  }
+  
+  return true;
+}
+
+/**
  * Hash a PIN using bcrypt
  * @param pin - The plain text PIN (4 digits)
  * @returns Promise resolving to hashed PIN

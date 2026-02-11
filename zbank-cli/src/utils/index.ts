@@ -1,13 +1,14 @@
 /**
  * Utility modules for zBANK CLI application
  * 
- * Exports validation, crypto, and migration utilities
+ * Exports validation, crypto, formatter, and migration utilities
  */
 
 export {
   isValidAccountNumber,
   isValidPin,
   isValidAmount,
+  validateTransactionAmount,
   hashPin,
   comparePin,
   dollarsToCents,
@@ -21,6 +22,14 @@ export {
 export {
   verifyPin,
 } from './crypto.js';
+
+export {
+  formatTransaction,
+  formatBalance,
+  formatTimestamp,
+  parseCurrency,
+  formatAccountNumber,
+} from './formatter.js';
 
 export {
   seedTestAccounts,
