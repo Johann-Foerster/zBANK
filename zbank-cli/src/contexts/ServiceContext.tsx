@@ -23,7 +23,7 @@ const ServiceContext = createContext<Services | null>(null);
 
 interface ServiceProviderProps {
   children: ReactNode;
-  storage?: JsonStorage;
+  storage?: IStorage;
   dataPath?: string;
 }
 
@@ -42,10 +42,12 @@ export const ServiceProvider: React.FC<ServiceProviderProps> = ({
     // Use provided storage or create default JsonStorage
     const storage = providedStorage || new JsonStorage(dataPath);
     
-    // Initialize storage (creates data directory and files if needed)
-    storage.initialize().catch((error: Error) => {
-      console.error('Failed to initialize storage:', error);
-    });
+    // Initialize storage if it's a JsonStorage instance
+    if (storage instanceof JsonStorage) {
+      storage.initialize().catch((error: Error) => {
+        console.error('Failed to initialize storage:', error);
+      });
+    }
     
     const sessionManager = new SessionManager();
     const authService = new AuthService(storage, sessionManager);

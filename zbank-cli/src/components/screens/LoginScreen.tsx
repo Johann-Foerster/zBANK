@@ -18,7 +18,6 @@ import { NumericInput } from '../common/NumericInput.js';
 import { ErrorMessage } from '../common/ErrorMessage.js';
 import { useAuth } from '../../contexts/ServiceContext.js';
 import { useKeyboard } from '../../hooks/useKeyboard.js';
-import { Account } from '../../models/Account.js';
 
 interface LoginScreenProps {
   onSuccess: () => void;
