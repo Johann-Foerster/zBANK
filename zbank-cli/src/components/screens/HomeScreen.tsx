@@ -20,7 +20,7 @@ import { BalanceDisplay } from '../common/BalanceDisplay.js';
 import { CurrencyInput } from '../common/CurrencyInput.js';
 import { useTransactions, useSession } from '../../contexts/ServiceContext.js';
 import { useKeyboard } from '../../hooks/useKeyboard.js';
-import { parseCurrency } from '../../utils/formatter.js';
+import { parseCurrency, formatBalance } from '../../utils/formatter.js';
 import { Account } from '../../models/Account.js';
 
 interface HomeScreenProps {
@@ -108,7 +108,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onLogout }) => {
         sessionManager.updateSession(updatedAccount);
         
         setMessageType('success');
-        setMessage(`Transaction successful! New balance: ${parseCurrency(String(result.newBalance / 100)) || 0}`);
+        setMessage(`Transaction successful! New balance: ${formatBalance(result.newBalance)}`);
         setAmount('');
         setSelectedAction(null);
       } else {
