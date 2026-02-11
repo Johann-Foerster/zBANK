@@ -31,7 +31,6 @@ export const App: React.FC = () => {
         return (
           <HomeScreen
             onLogout={() => navigateTo(AppState.EXIT)}
-            onRegister={() => navigateTo(AppState.REGISTER)}
           />
         );
 
