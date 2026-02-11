@@ -136,7 +136,9 @@ console.log('\n═════════════════════�
 console.log('  Key Features Demonstrated:');
 console.log('════════════════════════════════════════════════════════════');
 console.log('  ✓ Interactive action menu with arrow key navigation');
-console.log('  ✓ Real-time balance display (green for positive, red for negative)');
+console.log(
+	'  ✓ Real-time balance display (green for positive, red for negative)',
+);
 console.log('  ✓ Currency input with $ prefix and XX.XX validation');
 console.log('  ✓ Loading spinner during transaction processing');
 console.log('  ✓ Success messages with checkmark (✓) in green');

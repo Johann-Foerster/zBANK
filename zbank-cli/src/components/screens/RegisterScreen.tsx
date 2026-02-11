@@ -1,6 +1,6 @@
 /**
  * RegisterScreen - Skeleton registration screen
- * 
+ *
  * Matches the COBOL ZRGSTR map which has UI but no actual registration logic.
  * This is a skeleton/placeholder implementation showing the registration form
  * without implementing account creation functionality.
@@ -14,81 +14,84 @@ import { NumericInput } from '../common/NumericInput.js';
 import { useKeyboard } from '../../hooks/useKeyboard.js';
 
 interface RegisterScreenProps {
-  onBack: () => void;
-  onSuccess?: () => void;
+	onBack: () => void;
+	onSuccess?: () => void;
 }
 
 type FocusedField = 'account' | 'pin';
 
-export const RegisterScreen: React.FC<RegisterScreenProps> = ({ onBack, onSuccess }) => {
-  const [accountNumber, setAccountNumber] = useState('');
-  const [pin, setPin] = useState('');
-  const [focusedField, setFocusedField] = useState<FocusedField>('account');
-  
-  // Props intentionally unused in this skeleton implementation
-  void onSuccess;
+export const RegisterScreen: React.FC<RegisterScreenProps> = ({
+	onBack,
+	onSuccess,
+}) => {
+	const [accountNumber, setAccountNumber] = useState('');
+	const [pin, setPin] = useState('');
+	const [focusedField, setFocusedField] = useState<FocusedField>('account');
 
-  /**
-   * Handle account number submission (Enter key)
-   * Moves focus to PIN field
-   */
-  const handleAccountSubmit = () => {
-    setFocusedField('pin');
-  };
+	// Props intentionally unused in this skeleton implementation
+	void onSuccess;
 
-  // Handle Q key to go back to login
-  useKeyboard({
-    Q: onBack,
-    ESCAPE: onBack,
-  });
+	/**
+	 * Handle account number submission (Enter key)
+	 * Moves focus to PIN field
+	 */
+	const handleAccountSubmit = () => {
+		setFocusedField('pin');
+	};
 
-  return (
-    <Box flexDirection="column">
-      <Header title="REGISTER" showLogo={true} />
+	// Handle Q key to go back to login
+	useKeyboard({
+		Q: onBack,
+		ESCAPE: onBack,
+	});
 
-      <Box flexDirection="column" paddingX={2} paddingTop={1}>
-        {/* Account Number Input */}
-        <Box flexDirection="column" marginBottom={1}>
-          <Text color="cyan">Account Number (10 digits):</Text>
-          <NumericInput
-            value={accountNumber}
-            onChange={setAccountNumber}
-            onSubmit={handleAccountSubmit}
-            maxLength={10}
-            placeholder="0000000000"
-            focus={focusedField === 'account'}
-          />
-        </Box>
+	return (
+		<Box flexDirection="column">
+			<Header title="REGISTER" showLogo={true} />
 
-        {/* PIN Input */}
-        <Box flexDirection="column" marginBottom={1}>
-          <Text color="cyan">PIN (4 digits):</Text>
-          <NumericInput
-            value={pin}
-            onChange={setPin}
-            maxLength={4}
-            mask="*"
-            placeholder="****"
-            focus={focusedField === 'pin'}
-          />
-        </Box>
+			<Box flexDirection="column" paddingX={2} paddingTop={1}>
+				{/* Account Number Input */}
+				<Box flexDirection="column" marginBottom={1}>
+					<Text color="cyan">Account Number (10 digits):</Text>
+					<NumericInput
+						value={accountNumber}
+						onChange={setAccountNumber}
+						onSubmit={handleAccountSubmit}
+						maxLength={10}
+						placeholder="0000000000"
+						focus={focusedField === 'account'}
+					/>
+				</Box>
 
-        {/* Warning Message */}
-        <Box marginTop={1} marginBottom={1}>
-          <Text color="yellow">
-            ⚠ Registration functionality not yet implemented (matching COBOL)
-          </Text>
-        </Box>
+				{/* PIN Input */}
+				<Box flexDirection="column" marginBottom={1}>
+					<Text color="cyan">PIN (4 digits):</Text>
+					<NumericInput
+						value={pin}
+						onChange={setPin}
+						maxLength={4}
+						mask="*"
+						placeholder="****"
+						focus={focusedField === 'pin'}
+					/>
+				</Box>
 
-        {/* Instructions */}
-        <Box marginTop={1}>
-          <Text dimColor>
-            This screen matches the COBOL ZRGSTR map skeleton.
-          </Text>
-        </Box>
-      </Box>
+				{/* Warning Message */}
+				<Box marginTop={1} marginBottom={1}>
+					<Text color="yellow">
+						⚠ Registration functionality not yet implemented (matching COBOL)
+					</Text>
+				</Box>
 
-      <Footer hints={['[Q] Back to Login', '[ESC] Back']} />
-    </Box>
-  );
+				{/* Instructions */}
+				<Box marginTop={1}>
+					<Text dimColor>
+						This screen matches the COBOL ZRGSTR map skeleton.
+					</Text>
+				</Box>
+			</Box>
+
+			<Footer hints={['[Q] Back to Login', '[ESC] Back']} />
+		</Box>
+	);
 };

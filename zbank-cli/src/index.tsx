@@ -4,11 +4,18 @@ import { render } from 'ink';
 import { NavigationProvider } from './contexts/NavigationContext.js';
 import { ServiceProvider } from './contexts/ServiceContext.js';
 import { App } from './components/App.js';
+import { initializeStorage } from './utils/storage-init.js';
 
-render(
-	<ServiceProvider>
-		<NavigationProvider>
-			<App />
-		</NavigationProvider>
-	</ServiceProvider>
-);
+// Initialize storage with seed data if needed
+(async () => {
+	await initializeStorage();
+
+	// Render the application
+	render(
+		<ServiceProvider>
+			<NavigationProvider>
+				<App />
+			</NavigationProvider>
+		</ServiceProvider>,
+	);
+})();

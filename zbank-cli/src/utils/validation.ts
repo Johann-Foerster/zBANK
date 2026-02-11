@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt';
  * @returns true if valid, false otherwise
  */
 export function isValidAccountNumber(accountNumber: string): boolean {
-  return /^\d{10}$/.test(accountNumber);
+	return /^\d{10}$/.test(accountNumber);
 }
 
 /**
@@ -19,7 +19,7 @@ export function isValidAccountNumber(accountNumber: string): boolean {
  * @returns true if valid, false otherwise
  */
 export function isValidPin(pin: string): boolean {
-  return /^\d{4}$/.test(pin);
+	return /^\d{4}$/.test(pin);
 }
 
 /**
@@ -28,7 +28,7 @@ export function isValidPin(pin: string): boolean {
  * @returns true if valid, false otherwise
  */
 export function isValidAmount(amount: number): boolean {
-  return Number.isInteger(amount) && amount > 0;
+	return Number.isInteger(amount) && amount > 0;
 }
 
 /**
@@ -37,22 +37,22 @@ export function isValidAmount(amount: number): boolean {
  * @returns true if valid, false otherwise
  */
 export function validateTransactionAmount(amount: number): boolean {
-  // Must be an integer
-  if (!Number.isInteger(amount)) {
-    return false;
-  }
-  
-  // Must be positive
-  if (amount <= 0) {
-    return false;
-  }
-  
-  // Must not exceed maximum limit ($10 million = 1,000,000,000 cents)
-  if (amount > 1000000000) {
-    return false;
-  }
-  
-  return true;
+	// Must be an integer
+	if (!Number.isInteger(amount)) {
+		return false;
+	}
+
+	// Must be positive
+	if (amount <= 0) {
+		return false;
+	}
+
+	// Must not exceed maximum limit ($10 million = 1,000,000,000 cents)
+	if (amount > 1000000000) {
+		return false;
+	}
+
+	return true;
 }
 
 /**
@@ -61,12 +61,12 @@ export function validateTransactionAmount(amount: number): boolean {
  * @returns Promise resolving to hashed PIN
  */
 export async function hashPin(pin: string): Promise<string> {
-  if (!isValidPin(pin)) {
-    throw new Error('Invalid PIN format. Must be 4 digits.');
-  }
-  
-  const saltRounds = 10;
-  return await bcrypt.hash(pin, saltRounds);
+	if (!isValidPin(pin)) {
+		throw new Error('Invalid PIN format. Must be 4 digits.');
+	}
+
+	const saltRounds = 10;
+	return await bcrypt.hash(pin, saltRounds);
 }
 
 /**
@@ -75,8 +75,11 @@ export async function hashPin(pin: string): Promise<string> {
  * @param hashedPin - The hashed PIN to compare against
  * @returns Promise resolving to true if match, false otherwise
  */
-export async function comparePin(pin: string, hashedPin: string): Promise<boolean> {
-  return await bcrypt.compare(pin, hashedPin);
+export async function comparePin(
+	pin: string,
+	hashedPin: string,
+): Promise<boolean> {
+	return await bcrypt.compare(pin, hashedPin);
 }
 
 /**
@@ -85,7 +88,7 @@ export async function comparePin(pin: string, hashedPin: string): Promise<boolea
  * @returns Amount in cents
  */
 export function dollarsToCents(dollars: number): number {
-  return Math.round(dollars * 100);
+	return Math.round(dollars * 100);
 }
 
 /**
@@ -94,7 +97,7 @@ export function dollarsToCents(dollars: number): number {
  * @returns Amount in dollars
  */
 export function centsToDollars(cents: number): number {
-  return cents / 100;
+	return cents / 100;
 }
 
 /**
@@ -103,8 +106,8 @@ export function centsToDollars(cents: number): number {
  * @returns Formatted currency string (e.g., "$100.00")
  */
 export function formatCurrency(cents: number): string {
-  const dollars = centsToDollars(cents);
-  return `$${dollars.toFixed(2)}`;
+	const dollars = centsToDollars(cents);
+	return `$${dollars.toFixed(2)}`;
 }
 
 /**
@@ -113,7 +116,7 @@ export function formatCurrency(cents: number): string {
  * @returns Sanitized string with only digits
  */
 export function sanitizeNumericInput(input: string): string {
-  return input.replace(/\D/g, '');
+	return input.replace(/\D/g, '');
 }
 
 /**
@@ -122,7 +125,7 @@ export function sanitizeNumericInput(input: string): string {
  * @returns Padded account number
  */
 export function padAccountNumber(accountNumber: string): string {
-  return accountNumber.padStart(10, '0');
+	return accountNumber.padStart(10, '0');
 }
 
 /**
@@ -132,5 +135,5 @@ export function padAccountNumber(accountNumber: string): string {
  * @returns Padded PIN (10 digits)
  */
 export function padPinForCobol(pin: string): string {
-  return pin.padStart(10, '0');
+	return pin.padStart(10, '0');
 }

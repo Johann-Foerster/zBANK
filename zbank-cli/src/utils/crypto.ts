@@ -1,8 +1,11 @@
-import { hashPin as hashPinInternal, comparePin as comparePinInternal } from './validation.js';
+import {
+	hashPin as hashPinInternal,
+	comparePin as comparePinInternal,
+} from './validation.js';
 
 /**
  * Crypto utilities for zBANK CLI
- * 
+ *
  * This module provides PIN hashing and verification functionality
  * as specified in Task 03. It wraps the validation utilities to
  * provide a dedicated crypto interface.
@@ -15,7 +18,7 @@ import { hashPin as hashPinInternal, comparePin as comparePinInternal } from './
  * @throws Error if PIN format is invalid
  */
 export async function hashPin(pin: string): Promise<string> {
-  return hashPinInternal(pin);
+	return hashPinInternal(pin);
 }
 
 /**
@@ -25,5 +28,5 @@ export async function hashPin(pin: string): Promise<string> {
  * @returns Promise resolving to true if PIN matches, false otherwise
  */
 export async function verifyPin(pin: string, hash: string): Promise<boolean> {
-  return comparePinInternal(pin, hash);
+	return comparePinInternal(pin, hash);
 }
