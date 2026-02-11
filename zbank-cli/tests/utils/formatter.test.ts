@@ -58,12 +58,12 @@ describe('Formatter Utilities', () => {
     });
 
     it('should handle different dates correctly', () => {
-      const date1 = new Date('2024-12-31T23:59:59.000Z');
+      const date1 = new Date(2024, 11, 31, 23, 59, 59);
       const formatted1 = formatTimestamp(date1);
       expect(formatted1).toContain('2024-12-31');
       expect(formatted1).toContain('23:59:59');
 
-      const date2 = new Date('2024-01-01T00:00:00.000Z');
+      const date2 = new Date(2024, 0, 1, 0, 0, 0);
       const formatted2 = formatTimestamp(date2);
       expect(formatted2).toContain('2024-01-01');
       expect(formatted2).toContain('00:00:00');
