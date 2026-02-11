@@ -16,6 +16,6 @@ import { initializeStorage } from './utils/storage-init.js';
 			<NavigationProvider>
 				<App />
 			</NavigationProvider>
-		</ServiceProvider>
+		</ServiceProvider>,
 	);
 })();

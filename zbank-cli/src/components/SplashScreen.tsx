@@ -1,6 +1,6 @@
 /**
  * SplashScreen - Branded splash screen shown on application startup
- * 
+ *
  * Displays the zBANK logo with gradient colors and a loading message.
  * Automatically transitions to the login screen after 2 seconds.
  */
@@ -21,7 +21,12 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
 	}, [onComplete]);
 
 	return (
-		<Box flexDirection="column" alignItems="center" justifyContent="center" paddingTop={2}>
+		<Box
+			flexDirection="column"
+			alignItems="center"
+			justifyContent="center"
+			paddingTop={2}
+		>
 			<Gradient name="rainbow">
 				<BigText text="zBANK" />
 			</Gradient>

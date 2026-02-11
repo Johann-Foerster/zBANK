@@ -1,6 +1,6 @@
 /**
  * Storage Initialization Utility
- * 
+ *
  * Initializes the JSON storage with seed data if it doesn't already exist.
  * This ensures test accounts are available on first run, matching the COBOL
  * SEQDAT.ZBANK seed data.
